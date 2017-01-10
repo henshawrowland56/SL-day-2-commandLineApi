@@ -1,6 +1,7 @@
 /*COMMAND-LINE TOOL FOR CONSUMING APIs
 	BY HENSHAW ROWLAND
 	FOR ANDELA BOOT-CAMP
+	10.01.2017
 */
 var http = require('http');
 //var fs = require('fs');
@@ -40,22 +41,22 @@ function appStart() {
     	}
     });
 }
+//main function that connects with api using host and id
 function getApi(host,id){
 	var url = host + id +'/';
 	console.log("Performing GET Request...");
 	var request = http.get(url,function(res){
 		var body = "";
 		res.on('data', function(data){
-			body = body +data;
-			/*console.log(body.title);
-			console.log(data.director);
-			console.log(data.opening_crawl);*/
+			body = body + data;
 			console.log(body);
 			readline.setPrompt(">>>");
 			readline.prompt();
 		});
 	});
 }
+//functions that routes user interactions with api request function
+//get films by id
 function getFilmsApi(){
 	console.log(filmsPrompt);
 	readline.question("ENTER ID \n>>>", function(answer){
@@ -64,6 +65,7 @@ function getFilmsApi(){
 		getApi(host,id);
 	});
 }
+//gets characters by id
 function getXterApi(){
 	console.log(xterPrompt);
 	readline.question("ENTER ID \n>>>",function(answer){
@@ -72,6 +74,7 @@ function getXterApi(){
 		getApi(host,id);
 	});
 }
+//gets ships by id
 function getShipsApi(){
 	console.log(xterPrompt);
 	readline.question("ENTER ID \n>>>",function(answer){
@@ -80,6 +83,7 @@ function getShipsApi(){
 		getApi(host,id);
 	});
 }
+//statement to execute user input
 readline.on('line',function(line){
 	var lineResponse = line;
 	if (line === "films") {
